@@ -33,6 +33,27 @@ defmodule Fly.Billing do
     |> Repo.all()
   end
 
+  # Retrieve a stream of invoices
+  def stream_invoices(_opts \\ []) do
+    # Get only the invoices that are due but not yet invoiced
+    query = from(i in Invoice, where: is_nil(i.invoiced_at) and i.due_date <= ^Date.utc_today())
+    # Add relations to preload here line_items and organization
+    # Sum up the total of all invoice items
+    Repo.stream(query)
+    |> Stream.map(&Repo.preload(&1, [:invoice_items]))
+    |> Stream.map(&Repo.preload(&1, [:organization]))
+    |> Stream.map(fn invoice ->
+      Map.put(
+        invoice,
+        :total,
+        Enum.reduce(invoice.invoice_items, 0, fn item, acc ->
+          acc + item.amount
+        end)
+      )
+    end)
+  end
+
+  @spec get_invoice!(any, keyword) :: any
   @doc """
   Gets a single invoice.
 

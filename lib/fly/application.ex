@@ -17,9 +17,10 @@ defmodule Fly.Application do
       # Start Finch
       {Finch, name: Fly.Finch},
       # Start the Endpoint (http/https)
-      FlyWeb.Endpoint
+      FlyWeb.Endpoint,
       # Start a worker by calling: Fly.Worker.start_link(arg)
       # {Fly.Worker, arg}
+      Fly.Billing.InvoiceProcessor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
