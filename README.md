@@ -1,14 +1,3 @@
-# Fly Backend Work Sample
-
-Hello! This is a hiring project for our [Full-Stack Engineer position](https://fly.io/jobs/full-stack-engineer/).
-If you apply, we’ll ask you to do this project so we can see how you work through a contrived (yet shockingly accurate) example of the type of things you’d do at Fly.io.
-
-We want you to write some code to solve this problem, and tell us about your solution in the `NOTES.md` file. More details below!
-
-## The Job
-
-As a Full-Stack Engineer at Fly.io, you’ll be working on the interfaces around our platform product. Checkout the [job post](https://fly.io/jobs/full-stack-engineer/) for the nitty gritty.
-
 ## Background Information
 
 We have a few apps that handle our infrastructure. Some are Phoenix (Elixir), and some are Rails (Ruby). 
